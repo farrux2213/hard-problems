@@ -39,29 +39,42 @@
 
 // // Example 2
 // console.log(findMedianSortedArrays([1, 2], [3, 4])); // Output: 2.5
-function convert(s, numRows) {
-  if (numRows === 1) return s;
 
-  let rows = Array(numRows).fill("");
-  let index = 0;
-  let step = 1;
+//=====================================================================================
+// function convert(s, numRows) {
+//   if (numRows === 1) return s;
 
-  for (let i = 0; i < s.length; i++) {
-    rows[index] += s[i];
+//   let rows = Array(numRows).fill("");
+//   let index = 0;
+//   let step = 1;
 
-    if (index === 0) {
-      step = 1;
-    } else if (index === numRows - 1) {
-      step = -1;
-    }
+//   for (let i = 0; i < s.length; i++) {
+//     rows[index] += s[i];
 
-    index += step;
-  }
+//     if (index === 0) {
+//       step = 1;
+//     } else if (index === numRows - 1) {
+//       step = -1;
+//     }
 
-  return rows.join("");
-}
+//     index += step;
+//   }
 
-// Test cases
-console.log(convert("PAYPALISHIRING", 3)); // Output: "PAHNAPLSIIGYIR"
-console.log(convert("PAYPALISHIRING", 4)); // Output: "PINALSIGYAHRPI"
-console.log(convert("A", 1)); // Output: "A"
+//   return rows.join("");
+// }
+
+// // Test cases
+// console.log(convert("PAYPALISHIRING", 3)); // Output: "PAHNAPLSIIGYIR"
+// console.log(convert("PAYPALISHIRING", 4)); // Output: "PINALSIGYAHRPI"
+// console.log(convert("A", 1)); // Output: "A"
+
+//====================================================
+
+var reverse = function (x) {
+  const reversed =
+    parseInt(Math.abs(x).toString().split("").reverse().join("")) *
+    Math.sign(x);
+  return reversed < Math.pow(-2, 31) || reversed > Math.pow(2, 31) - 1
+    ? 0
+    : reversed;
+};
