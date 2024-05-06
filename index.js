@@ -133,14 +133,15 @@ function intToRoman(num) {
 
   let result = "";
 
-  for (let i = 0; i < romanMap.length; i++) {
-    while (num >= romanMap[i].value) {
-      result += romanMap[i].symbol;
-      num -= romanMap[i].value;
-    }
-  }
+  // for (let i = 0; i < romanMap.length; i++) {
+  //   while (num >= romanMap[i].value) {
+  //     result += romanMap[i].symbol;
+  //     num -= romanMap[i].value;
 
-  return result;
+  //   }
+  // }
+
+  // return result;
 }
 
 // Test cases
