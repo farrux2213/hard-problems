@@ -114,37 +114,57 @@
 
 // // Example usage:
 // console.log(letterCombinations("23")); // Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"]
-function intToRoman(num) {
-  const romanMap = [
-    { value: 1000, symbol: "M" },
-    { value: 900, symbol: "CM" },
-    { value: 500, symbol: "D" },
-    { value: 400, symbol: "CD" },
-    { value: 100, symbol: "C" },
-    { value: 90, symbol: "XC" },
-    { value: 50, symbol: "L" },
-    { value: 40, symbol: "XL" },
-    { value: 10, symbol: "X" },
-    { value: 9, symbol: "IX" },
-    { value: 5, symbol: "V" },
-    { value: 4, symbol: "IV" },
-    { value: 1, symbol: "I" },
-  ];
 
-  let result = "";
+//======================================================================================
+// function intToRoman(num) {
+//   const romanMap = [
+//     { value: 1000, symbol: "M" },
+//     { value: 900, symbol: "CM" },
+//     { value: 500, symbol: "D" },
+//     { value: 400, symbol: "CD" },
+//     { value: 100, symbol: "C" },
+//     { value: 90, symbol: "XC" },
+//     { value: 50, symbol: "L" },
+//     { value: 40, symbol: "XL" },
+//     { value: 10, symbol: "X" },
+//     { value: 9, symbol: "IX" },
+//     { value: 5, symbol: "V" },
+//     { value: 4, symbol: "IV" },
+//     { value: 1, symbol: "I" },
+//   ];
 
-  // for (let i = 0; i < romanMap.length; i++) {
-  //   while (num >= romanMap[i].value) {
-  //     result += romanMap[i].symbol;
-  //     num -= romanMap[i].value;
+//   let result = "";
 
-  //   }
-  // }
+//   for (let i = 0; i < romanMap.length; i++) {
+//     while (num >= romanMap[i].value) {
+//       result += romanMap[i].symbol;
+//       num -= romanMap[i].value;
+//     }
+//   }
 
-  // return result;
+//   return result;
+// }
+
+// // Test cases
+// console.log(intToRoman(3749)); // Output: "MMMDCCXLIX"
+// console.log(intToRoman(58)); // Output: "LVIII"
+// console.log(intToRoman(1994)); // Output: "MCMXCIV"
+
+function climbStairs(n) {
+  if (n === 1) return 1;
+
+  let dp = new Array(n + 1);
+  dp[1] = 1;
+  dp[2] = 2;
+
+  for (let i = 3; i <= n; i++) {
+    dp[i] = dp[i - 1] + dp[i - 2];
+  }
+
+  return dp[n];
 }
 
 // Test cases
-console.log(intToRoman(3749)); // Output: "MMMDCCXLIX"
-console.log(intToRoman(58)); // Output: "LVIII"
-console.log(intToRoman(1994)); // Output: "MCMXCIV"
+console.log(climbStairs(2)); // Output: 2
+console.log(climbStairs(3)); // Output: 3
+console.log(climbStairs(8)); // Output: 34
