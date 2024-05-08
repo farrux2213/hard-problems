@@ -169,4 +169,67 @@
 // // Test cases
 // console.log(climbStairs(2)); // Output: 2
 // console.log(climbStairs(3)); // Output: 3
-// console.log(climbStairs(8)); // Output: 34
+// console.log(climbStairs(4)); // Output: 5
+
+/* 
+
+1+1+1+1
+1+1+2
+2+2
+2+1+1
+1+2+1
+
+*/
+
+var getSkyline = function (buildings) {
+  const n = buildings.length;
+  if (n === 0) return [];
+  if (n === 1) {
+    const [left, right, height] = buildings[0];
+    return [
+      [left, height],
+      [right, 0],
+    ];
+  }
+
+  const merge = (left, right) => {
+    const merged = [];
+    let h1 = 0,
+      h2 = 0;
+    while (left.length && right.length) {
+      let x;
+      let h;
+      if (left[0][0] < right[0][0]) {
+        [x, h1] = left.shift();
+      } else if (left[0][0] > right[0][0]) {
+        [x, h2] = right.shift();
+      } else {
+        x = left[0][0];
+        h1 = left.shift()[1];
+        h2 = right.shift()[1];
+      }
+      const maxHeight = Math.max(h1, h2);
+      if (merged.length === 0 || maxHeight !== merged[merged.length - 1][1]) {
+        merged.push([x, maxHeight]);
+      }
+    }
+    merged.push(...left, ...right);
+    return merged;
+  };
+
+  const divideAndConquer = (buildings, left, right) => {
+    if (left === right) {
+      const [l, r, h] = buildings[left];
+      return [
+        [l, h],
+        [r, 0],
+      ];
+    }
+    const mid = Math.floor((left + right) / 2);
+    const leftSkyline = divideAndConquer(buildings, left, mid);
+    const rightSkyline = divideAndConquer(buildings, mid + 1, right);
+    return merge(leftSkyline, rightSkyline);
+  };
+
+  return divideAndConquer(buildings, 0, n - 1);
+};
