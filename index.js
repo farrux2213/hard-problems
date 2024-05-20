@@ -279,39 +279,40 @@ console.log(climbStairs(4)); // Output: 5
 // console.log(jump([2, 3, 1, 1, 4])); // Output: 2
 // console.log(jump([2, 3, 0, 1, 4])); // Output: 2
 //=========================================================================================
-function isMatch(s, p) {
-  const sLen = s.length;
-  const pLen = p.length;
+// function isMatch(s, p) {
+//   const sLen = s.length;
+//   const pLen = p.length;
 
-  // Initialize a DP table with false values
-  const dp = Array(sLen + 1)
-    .fill(false)
-    .map(() => Array(pLen + 1).fill(false));
+//   // Initialize a DP table with false values
+//   const dp = Array(sLen + 1)
+//     .fill(false)
+//     .map(() => Array(pLen + 1).fill(false));
 
-  // Empty pattern matches empty string
-  dp[0][0] = true;
+//   // Empty pattern matches empty string
+//   dp[0][0] = true;
 
-  // Deal with patterns like *, **, ***, etc.
-  for (let j = 1; j <= pLen; j++) {
-    if (p[j - 1] === "*") {
-      dp[0][j] = dp[0][j - 1];
-    }
-  }
+//   // Deal with patterns like *, **, ***, etc.
+//   for (let j = 1; j <= pLen; j++) {
+//     if (p[j - 1] === "*") {
+//       dp[0][j] = dp[0][j - 1];
+//     }
+//   }
 
-  for (let i = 1; i <= sLen; i++) {
-    for (let j = 1; j <= pLen; j++) {
-      if (p[j - 1] === "?" || p[j - 1] === s[i - 1]) {
-        dp[i][j] = dp[i - 1][j - 1];
-      } else if (p[j - 1] === "*") {
-        dp[i][j] = dp[i][j - 1] || dp[i - 1][j];
-      }
-    }
-  }
+//   for (let i = 1; i <= sLen; i++) {
+//     for (let j = 1; j <= pLen; j++) {
+//       if (p[j - 1] === "?" || p[j - 1] === s[i - 1]) {
+//         dp[i][j] = dp[i - 1][j - 1];
+//       } else if (p[j - 1] === "*") {
+//         dp[i][j] = dp[i][j - 1] || dp[i - 1][j];
+//       }
+//     }
+//   }
 
-  return dp[sLen][pLen];
-}
+//   return dp[sLen][pLen];
+// }
 
-// Test cases
-console.log(isMatch("aa", "a")); // Output: false
-console.log(isMatch("aa", "*")); // Output: true
-console.log(isMatch("cb", "?a")); // Output: false
+// // Test cases
+// console.log(isMatch("aa", "a")); // Output: false
+// console.log(isMatch("aa", "*")); // Output: true
+// console.log(isMatch("cb", "?a")); // Output: false
+//=======================================================================================
