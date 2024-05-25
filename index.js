@@ -316,3 +316,34 @@ console.log(climbStairs(4)); // Output: 5
 // console.log(isMatch("aa", "*")); // Output: true
 // console.log(isMatch("cb", "?a")); // Output: false
 //=======================================================================================
+function removeAlmostEqualCharacters(word) {
+  let operations = 0;
+  let n = word.length;
+
+  for (let i = 0; i < n - 1; i++) {
+    if (
+      word[i] === word[i + 1] ||
+      Math.abs(word.charCodeAt(i) - word.charCodeAt(i + 1)) === 1
+    ) {
+      // Birini o'zgartirish kerak
+      operations++;
+
+      // Biz tanlagan belgi hozirgi belgidan farqli bo'lishi kerak
+      if (word[i] !== "a") {
+        word = word.slice(0, i + 1) + "a" + word.slice(i + 2);
+      } else {
+        word = word.slice(0, i + 1) + "b" + word.slice(i + 2);
+      }
+
+      // Skip the next character to avoid unnecessary operations
+      i++;
+    }
+  }
+
+  return operations;
+}
+
+// Misol uchun chaqirishlar
+console.log(removeAlmostEqualCharacters("aaaaa")); // 2
+console.log(removeAlmostEqualCharacters("abddez")); // 2
+console.log(removeAlmostEqualCharacters("zyxyxyz")); // 3
