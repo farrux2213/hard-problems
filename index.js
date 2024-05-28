@@ -152,29 +152,29 @@
 
 // ===================================================================================
 
-function climbStairs(n) {
-  if (n === 1) return 1;
+// function climbStairs(n) {
+//   if (n === 1) return 1;
 
-  let dp = new Array(n + 1);
-  console.log(dp, "initial state");
-  dp[1] = 1;
-  dp[2] = 2;
-  console.log(dp, "second stage of db");
+//   let dp = new Array(n + 1);
+//   console.log(dp, "initial state");
+//   dp[1] = 1;
+//   dp[2] = 2;
+//   console.log(dp, "second stage of db");
 
-  for (let i = 3; i <= n; i++) {
-    dp[i] = dp[i - 1] + dp[i - 2];
-    console.log(dp, `stage of ${i}`);
-  }
+//   for (let i = 3; i <= n; i++) {
+//     dp[i] = dp[i - 1] + dp[i - 2];
+//     console.log(dp, `stage of ${i}`);
+//   }
 
-  console.log(dp, " final stage ");
+//   console.log(dp, " final stage ");
 
-  return dp[n];
-}
+//   return dp[n];
+// }
 
-// Test cases
-// console.log(climbStairs(2)); // Output: 2
-// console.log(climbStairs(3)); // Output: 3
-console.log(climbStairs(4)); // Output: 5
+// // Test cases
+// // console.log(climbStairs(2)); // Output: 2
+// // console.log(climbStairs(3)); // Output: 3
+// console.log(climbStairs(4)); // Output: 5
 
 /* 
 1 --- 2
@@ -349,3 +349,29 @@ console.log(climbStairs(4)); // Output: 5
 // console.log(removeAlmostEqualCharacters("abddez")); // 2
 // console.log(removeAlmostEqualCharacters("zyxyxyz")); // 3
 //========================================================================
+
+function searchInsert(nums, target) {
+  let left = 0;
+  let right = nums.length - 1;
+
+  while (left <= right) {
+    const mid = Math.floor((left + right) / 2);
+
+    if (nums[mid] === target) {
+      return mid;
+    } else if (nums[mid] < target) {
+      left = mid + 1;
+    } else {
+      right = mid - 1;
+    }
+  }
+
+  return left;
+}
+
+// Test holatlar:
+console.log(searchInsert([1, 3, 5, 6], 5)); // Chiqish: 2
+console.log(searchInsert([1, 3, 5, 6], 2)); // Chiqish: 1
+console.log(searchInsert([1, 3, 5, 6], 7)); // Chiqish: 4
+console.log(searchInsert([1, 3, 5, 6], 0)); // Chiqish: 0
+console.log(searchInsert([1], 0)); // Chiqish: 0
