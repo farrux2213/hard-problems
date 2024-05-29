@@ -13,3 +13,8 @@
 // };
 
 // console.log(climbStairs(2));
+let arr = [5, 10, 15];
+let arr2 = arr;
+arr[0] = 50;
+
+console.log(arr2[0]); // ?
